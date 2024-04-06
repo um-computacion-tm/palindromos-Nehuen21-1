@@ -1,0 +1,39 @@
+import unittest
+
+
+def is_palindrome(string):
+    string = string.lower()                                         #Elimina mayusculas
+    string = string.replace(" ","")                         #Elimina espacios
+
+    largo = len(string)-1                               #Guardamos el valor de la longitud para desp utilizarlo en el bucle
+    a = 0                                                     #Le restamos 1 porque empieza desde el 0
+    for i in range(0,len(string)):                      
+        if string[a] == string[largo]:
+            a += 1                                          #Es un contador, recorre de izquierda a derecha
+            largo -= 1                                      #Es un contador, recorre de derecha a izquierda
+        else:
+            return False
+    return True
+
+class TestIsPalindrome(unittest.TestCase):
+    def test_with_a(self):
+        input = "a"
+        result = is_palindrome(input)
+        self.assertTrue(result)
+
+    def test_with_ala(self):
+        input = "Ala"
+        result = is_palindrome(input)
+        self.assertTrue(result)
+
+    def test_with_neuquen(self):
+        input = "Neuquen"
+        result = is_palindrome(input)
+        self.assertTrue(result)
+
+    def test_with_hola(self):
+        input = "Hola"
+        result = is_palindrome(input)
+        self.assertFalse(result)
+
+unittest.main()
